@@ -32,13 +32,13 @@
         <div class="item flex-view">
           <div class="label">手机号</div>
           <div class="right-box">
-            <input type="text" v-model="form.mobile" placeholder="请输入邮箱" maxlength="100" class="input-dom web-input">
+            <input type="text" v-model="form.mobile" placeholder="请输入账号" maxlength="100" class="input-dom web-input">
           </div>
         </div>
         <div class="item flex-view">
           <div class="label">邮箱</div>
           <div class="right-box">
-            <input type="text" v-model="form.email" placeholder="请输入邮箱" maxlength="100" class="input-dom web-input">
+            <input type="text" v-model="form.email" placeholder="请输入账号" maxlength="100" class="input-dom web-input">
           </div>
         </div>
         <div class="item flex-view">

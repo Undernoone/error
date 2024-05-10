@@ -2,84 +2,84 @@
   <div>
     <Header/>
     <section class="cart-page flex-view">
-      <div class="left-flex">
-        <div class="title flex-view">
-          <h3>订单明细页</h3>
+    <div class="left-flex">
+      <div class="title flex-view">
+        <h3>订单明细页</h3>
+      </div>
+      <div class="cart-list-view">
+        <div class="list-th flex-view">
+          <span class="line-1">商品名称</span>
+          <span class="line-2">价格</span>
+          <span class="line-5">数量</span>
+          <span class="line-6">操作</span>
         </div>
-        <div class="cart-list-view">
-          <div class="list-th flex-view">
-            <span class="line-1">商品名称</span>
-            <span class="line-2">价格</span>
-            <span class="line-5">数量</span>
-            <span class="line-6">操作</span>
-          </div>
-          <div class="list">
-            <div class="items flex-view">
-              <div class="book flex-view">
-                <img src="https://file.ituring.com.cn/SmallCover/2212c21242c05ebc49f3">
-                <h2>{{title}}</h2>
-              </div>
-              <div class="pay">¥{{price}}</div>
-              <a-input-number v-model="count" :min="1" :max="10" @change="onCountChange"/>
-              <img src="@/assets/images/delete-icon.svg" class="delete">
+        <div class="list">
+          <div class="items flex-view">
+            <div class="book flex-view">
+              <img :src="cover">
+              <h2>{{title}}</h2>
             </div>
+            <div class="pay">¥{{price}}</div>
+            <a-input-number v-model="count" :min="1" :max="repertory" @change="onCountChange"/>
+            <img src="@/assets/images/delete-icon.svg" class="delete">
           </div>
         </div>
-        <div class="title flex-view">
-          <h3>备注</h3>
-        </div>
-        <textarea :value="remark" placeholder="输入备注信息，100字以内" class="remark">
+      </div>
+      <div class="title flex-view">
+        <h3>备注</h3>
+      </div>
+      <textarea :value="remark" placeholder="输入备注信息，100字以内" class="remark">
     </textarea>
+    </div>
+    <div class="right-flex">
+      <div class="title flex-view">
+        <h3>收货地址</h3>
+        <span class="click-txt" @click="handleSelectAddress" v-if="receiver_address">选择地址</span>
       </div>
-      <div class="right-flex">
-        <div class="title flex-view">
-          <h3>收货地址</h3>
-          <span class="click-txt" @click="handleSelectAddress" v-if="receiver_address">选择地址</span>
-        </div>
-        <div class="address-view">
-          <div class="info" style="">
-            <span>收件人：</span>
-            <span class="name">{{receiver_name}}
+      <div class="address-view">
+        <div class="info" style="">
+          <span>收件人：</span>
+          <span class="name">{{receiver_name}}
           </span>
-            <span class="tel">{{receiver_phone}}
+          <span class="tel">{{receiver_phone}}
           </span>
-          </div>
-          <div class="address" v-if="receiver_address"> {{receiver_address}}</div>
-          <div class="info" v-else>
-            <span>目前暂无地址信息，请</span>
-            <span class="info-blue" @click="handleCreateAddress">新建地址</span>
-          </div>
         </div>
-        <div class="title flex-view">
-          <h3>结算</h3>
-          <span class="click-txt">价格</span>
-        </div>
-        <div class="price-view">
-          <div class="price-item flex-view">
-            <div class="item-name">商品总价</div>
-            <div class="price-txt">¥{{this.amount}}</div>
-          </div>
-          <div class="price-item flex-view">
-            <div class="item-name">商品优惠</div>
-            <div class="price-txt">¥0</div>
-          </div>
-          <div class="price-item flex-view">
-            <div class="item-name">商品折扣</div>
-            <div class="price-txt">¥0</div>
-          </div>
-          <div class="total-price-view flex-view">
-            <span>合计</span>
-            <div class="price">
-              <span class="font-big">¥{{this.amount}}</span>
-            </div>
-          </div>
-          <div class="btns-view">
-            <button class="btn buy" @click="handleBack()">返回</button>
-            <button class="btn pay jiesuan" @click="handleJiesuan()">结算</button>
-          </div>
+        <div class="address" v-if="receiver_address"> {{receiver_address}}</div>
+        <div class="info" v-else>
+          <span>目前暂无地址信息，请</span>
+          <span class="info-blue" @click="handleCreateAddress">新建地址</span>
         </div>
       </div>
-    </section>
+      <div class="title flex-view">
+        <h3>结算</h3>
+        <span class="click-txt">价格</span>
+      </div>
+      <div class="price-view">
+        <div class="price-item flex-view">
+          <div class="item-name">商品总价</div>
+          <div class="price-txt">¥{{this.amount}}</div>
+        </div>
+        <div class="price-item flex-view">
+          <div class="item-name">商品优惠</div>
+          <div class="price-txt">¥0</div>
+        </div>
+        <div class="price-item flex-view">
+          <div class="item-name">商品折扣</div>
+          <div class="price-txt">¥0</div>
+        </div>
+        <div class="total-price-view flex-view">
+          <span>合计</span>
+          <div class="price">
+            <span class="font-big">¥{{this.amount}}</span>
+          </div>
+        </div>
+        <div class="btns-view">
+          <button class="btn buy" @click="handleBack()">返回</button>
+          <button class="btn pay jiesuan" @click="handleJiesuan()">结算</button>
+        </div>
+      </div>
+    </div>
+  </section>
   </div>
 </template>
 
@@ -102,19 +102,23 @@ export default {
       id: undefined,
       title: undefined,
       price: undefined,
+      repertory: undefined,
       remark: undefined,
       count: 1,
       amount: undefined,
       receiver_name: undefined,
       receiver_phone: undefined,
-      receiver_address: undefined
+      receiver_address: undefined,
+      cover: undefined,
     }
   },
   mounted () {
     this.id = this.$route.query.id
     this.title = this.$route.query.title
     this.price = this.$route.query.price
-    this.amount = this.price
+    this.amount = this.price,
+    this.cover = this.$route.query.cover,
+    this.repertory = this.$route.query.repertory
 
     this.listAddressData()
   },
@@ -196,7 +200,7 @@ export default {
       console.log('back...')
     },
     handleJiesuan () {
-      const formData = new FormData()
+      // const formData = new FormData()
       let userId = this.$store.state.user.userId
       if (!userId) {
         this.$message.warn('请先登录！')
@@ -206,16 +210,33 @@ export default {
         this.$message.warn('请选择地址！')
         return
       }
-      formData.append('user', userId)
-      formData.append('thing', this.id)
-      formData.append('count', this.count)
-      if (this.remark){
-        formData.append('remark', this.remark)
+      // formData.append('user', userId)
+      // formData.append('thing', this.id)
+      // formData.append('count', this.count)
+      // if (this.remark){
+      //   formData.append('remark', this.remark)
+      // }
+      // formData.append('receiver_name', this.receiver_name)
+      // formData.append('receiver_phone', this.receiver_phone)
+      // formData.append('receiver_address', this.receiver_address)
+      // console.log(formData)
+
+      const formData = {
+        user: userId,
+        things: JSON.stringify([{
+          "thing_id": this.id,
+          "count": this.count,
+          "title": this.title,
+          "price": this.price,
+          "cover": this.cover,
+          "selected": false
+        }]),
+        remark: this.remark,
+        receiver_name: this.receiver_name,
+        receiver_phone: this.receiver_phone,
+        receiver_address: this.receiver_address,
+        count: this.count,
       }
-      formData.append('receiver_name', this.receiver_name)
-      formData.append('receiver_phone', this.receiver_phone)
-      formData.append('receiver_address', this.receiver_address)
-      console.log(formData)
       createApi(formData).then(res => {
         this.$message.success('请支付订单')
         this.$router.push({'name': 'pay', query: {'amount': this.amount}})

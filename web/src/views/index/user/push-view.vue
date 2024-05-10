@@ -55,7 +55,7 @@ export default {
       const reg = /^[a-zA-Z0-9][a-zA-Z0-9_]+\@[a-zA-Z0-9]+\.[a-zA-Z]{2,5}(\.[a-zA-Z]{2,5})*$/i
 
       if (!this.push_email.match(reg)) {
-        this.$message.warn('请输入正确的邮箱格式')
+        this.$message.warn('请输入正确的格式')
         return
       }
 

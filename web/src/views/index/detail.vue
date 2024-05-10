@@ -269,7 +269,7 @@ export default {
             title: detailData.title,
             price: detailData.price,
             repertory: detailData.repertory,
-            // cover: detailData.cover
+            cover: detailData.cover
           }})
     },
     handleShopCarAdd (detailData) {
